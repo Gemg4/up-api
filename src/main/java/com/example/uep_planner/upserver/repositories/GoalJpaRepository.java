@@ -19,17 +19,17 @@ public interface GoalJpaRepository extends JpaRepository<@NonNull Goal, @NonNull
     AND (:status IS NULL OR status = :status)
     ORDER BY
     CASE
-        WHEN status = "achieved" THEN 1
+        WHEN status = 'achieved' THEN 1
         ELSE 0
     END,
     CASE
-        WHEN status = "achieved" THEN target_date
+        WHEN status = 'achieved' THEN target_date
         ELSE NULL
     END,
     CASE
-        WHEN status = "active" THEN target_date
+        WHEN status = 'active' THEN target_date
         ELSE NULL
-    END """, nativeQuery = true)
+    END""", nativeQuery = true)
     List<Goal> findAllForUser(@Param("user_id") Long userId, @Param("status") String status);
 
     @Query(value = """
